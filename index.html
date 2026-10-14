@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>João Marceneiro | Móveis Planejados</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --cor-madeira: #8b5e3c;
+      --cor-madeira-escura: #5c3a21;
+      --cor-creme: #f5efe6;
+      --cor-carvao: #2b2b2b;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--cor-carvao);
+      background-color: var(--cor-creme);
+    }
+
+    h1, h2, h3, .titulo {
+      font-family: 'Playfair Display', serif;
+    }
+
+    /* NAVBAR */
+    .navbar {
+      background-color: rgba(43, 43, 43, 0.95);
+      transition: all 0.3s;
+    }
+    .navbar-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      color: #fff !important;
+    }
+    .navbar-brand span { color: var(--cor-madeira); }
+    .nav-link { color: #ddd !important; font-weight: 500; }
+    .nav-link:hover { color: var(--cor-madeira) !important; }
+
+    /* HERO */
+  .hero {
+  background: linear-gradient(135deg, #2b2b2b 0%, #5c3a21 100%);
+  color: #fff;
+  padding: 140px 0 100px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Fundo só do lado esquerdo (atrás do texto) */
+.hero-texto {
+  position: relative;
+  padding: 40px 30px;
+  border-radius: 16px;
+  background:
+    linear-gradient(rgba(43, 43, 43, 0.75), rgba(92, 58, 33, 0.75)),
+    url('img/fundo-hero.png') center/cover no-repeat;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  line-height: 1.15;
+}
+
+.hero p {
+  font-size: 1.15rem;
+  max-width: 520px;
+  margin-bottom: 2rem;
+  color: #e6ddd1;
+}
+
+.hero-img {
+  width: 100%;
+  max-width: 480px;
+  border-radius: 16px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.45);
+  border: 4px solid rgba(255,255,255,0.08);
+  object-fit: cover;
+}
+
+    /* BOTÕES */
+    .btn-madeira {
+      background-color: var(--cor-madeira);
+      color: #fff;
+      border: none;
+      padding: 12px 32px;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+    .btn-madeira:hover {
+      background-color: var(--cor-madeira-escura);
+      color: #fff;
+    }
+
+    .btn-whatsapp {
+      background-color: #25d366;
+      color: #fff;
+      border: none;
+      padding: 14px 38px;
+      font-weight: 600;
+      border-radius: 50px;
+      transition: all 0.3s;
+    }
+    .btn-whatsapp:hover {
+      background-color: #1ebe5b;
+      color: #fff;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(37,211,102,0.35);
+    }
+    .btn-whatsapp i { font-size: 1.3rem; margin-right: 8px; vertical-align: middle; }
+
+    /* SEÇÕES */
+    section { padding: 80px 0; }
+
+    .section-title { text-align: center; margin-bottom: 60px; }
+    .section-title h2 { font-size: 2.5rem; color: var(--cor-madeira-escura); }
+    .section-title .linha {
+      width: 80px;
+      height: 3px;
+      background-color: var(--cor-madeira);
+      margin: 15px auto;
+    }
+
+    /* SERVIÇOS */
+    .card-servico {
+      border: none;
+      border-radius: 12px;
+      padding: 35px 25px;
+      background: #fff;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      height: 100%;
+      transition: transform 0.3s, box-shadow 0.3s;
+      text-align: center;
+    }
+    .card-servico:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+    }
+    .card-servico i {
+      font-size: 2.8rem;
+      color: var(--cor-madeira);
+      margin-bottom: 20px;
+    }
+    .card-servico h4 {
+      font-family: 'Playfair Display', serif;
+      color: var(--cor-madeira-escura);
+    }
+
+    /* PORTFÓLIO */
+    .portfolio-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+      cursor: pointer;
+    }
+    .portfolio-item img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+    .portfolio-item:hover img { transform: scale(1.1); }
+    .portfolio-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(92,58,33,0.9), transparent 70%);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 25px;
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+    .portfolio-item:hover .portfolio-overlay { opacity: 1; }
+    .portfolio-overlay h5 { font-family: 'Playfair Display', serif; margin: 0; }
+
+    /* SOBRE */
+    .sobre-img {
+      border-radius: 12px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+      width: 100%;
+    }
+
+    /* CONTATO */
+    .contato-card {
+      background: var(--cor-creme);
+      border-radius: 12px;
+      padding: 25px 15px;
+      transition: transform 0.3s, box-shadow 0.3s;
+      height: 100%;
+    }
+    .contato-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    }
+    .contato-card i {
+      font-size: 1.8rem;
+      color: var(--cor-madeira);
+      margin-bottom: 12px;
+      display: block;
+    }
+    .contato-card h5 {
+      font-family: 'Playfair Display', serif;
+      color: var(--cor-madeira-escura);
+      font-size: 1.1rem;
+      margin-bottom: 6px;
+    }
+    .contato-card p { font-size: 0.9rem; color: #666; }
+
+    /* FOOTER */
+    footer {
+      background: var(--cor-carvao);
+      color: #bbb;
+      padding: 40px 0 20px;
+    }
+    footer a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+      color: #ddd;
+      margin: 0 6px;
+      font-size: 1.1rem;
+      transition: all 0.3s;
+      text-decoration: none;
+    }
+    footer a:hover {
+      background: var(--cor-madeira);
+      color: #fff;
+      transform: translateY(-3px);
+    }
+    footer .credito {
+      font-size: 0.8rem;
+      color: #777;
+      margin-top: 10px;
+    }
+    footer .credito a {
+      display: inline;
+      width: auto;
+      height: auto;
+      background: none;
+      color: var(--cor-madeira);
+      margin: 0;
+      font-size: 0.8rem;
+    }
+    footer .credito a:hover {
+      background: none;
+      transform: none;
+      color: #fff;
+    }
+
+    /* WHATSAPP FLUTUANTE */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      width: 60px;
+      height: 60px;
+      background: #25d366;
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      box-shadow: 0 6px 20px rgba(37,211,102,0.4);
+      z-index: 999;
+      transition: transform 0.3s;
+      text-decoration: none;
+    }
+    .whatsapp-float:hover { transform: scale(1.1); color: #fff; }
+
+    /* RESPONSIVO */
+    @media (max-width: 991px) {
+      .hero {
+        padding: 120px 0 70px;
+        text-align: center;
+      }
+      .hero h1 { font-size: 2.3rem; }
+      .hero p { margin-left: auto; margin-right: auto; }
+      .hero-img { margin-top: 30px; max-width: 380px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <i class="bi bi-hammer"></i> João <span>Marcenaria</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="menu">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" href="#inicio">Início</a></li>
+          <li class="nav-item"><a class="nav-link" href="#servicos">Serviços</a></li>
+          <li class="nav-item"><a class="nav-link" href="#portfolio">Portfólio</a></li>
+          <li class="nav-item"><a class="nav-link" href="#sobre">Sobre</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contato">Contato</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header id="inicio" class="hero">
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-6 text-center text-lg-start">
+          <h1>Móveis Planejados com Alma</h1>
+          <p>Transformamos madeira em peças únicas, feitas sob medida para o seu espaço.</p>
+          <a
+            href="https://wa.me/5521990926229?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20de%20m%C3%B3veis%20planejados."
+            target="_blank"
+            rel="noopener"
+            class="btn btn-madeira"
+          >
+            <i class="bi bi-whatsapp"></i> Solicitar Orçamento
+          </a>
+        </div>
+        <div class="col-lg-6 text-center">
+          <img src="img/foto3.png" alt="Marceneiro trabalhando na oficina" class="hero-img" />
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- SERVIÇOS -->
+  <section id="servicos">
+    <div class="container">
+      <div class="section-title">
+        <h2>Nossos Serviços</h2>
+        <div class="linha"></div>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-3">
+          <div class="card-servico">
+            <i class="bi bi-house-door"></i>
+            <h4>Cozinhas</h4>
+            <p class="text-muted mb-0">Projetos funcionais e elegantes para sua cozinha.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="card-servico">
+            <i class="bi bi-book"></i>
+            <h4>Estantes & Livrarias</h4>
+            <p class="text-muted mb-0">Aproveite cada centímetro com estilo.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="card-servico">
+            <i class="bi bi-door-open"></i>
+            <h4>Guarda-roupas</h4>
+            <p class="text-muted mb-0">Organização e beleza em um só móvel.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="card-servico">
+            <i class="bi bi-briefcase"></i>
+            <h4>Escritórios</h4>
+            <p class="text-muted mb-0">Mesas, estações e nichos sob medida.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PORTFÓLIO -->
+  <section id="portfolio" class="bg-white">
+    <div class="container">
+      <div class="section-title">
+        <h2>Nosso Portfólio</h2>
+        <div class="linha"></div>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-4">
+          <div class="portfolio-item">
+            <img src="img/cozinha-planejada.png" alt="Cozinha planejada">
+            <div class="portfolio-overlay"><h5 class="mb-0">Cozinha Planejada</h5></div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="portfolio-item">
+            <img src="img/estante.png" alt="Estante">
+            <div class="portfolio-overlay"><h5 class="mb-0">Estante Sob Medida</h5></div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="portfolio-item">
+            <img src="img/guarda-roupa.png" alt="Guarda-roupa">
+            <div class="portfolio-overlay"><h5 class="mb-0">Guarda-roupa</h5></div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="portfolio-item">
+            <img src="img/home-ofice.png" alt="Escritório">
+            <div class="portfolio-overlay"><h5 class="mb-0">Home Office</h5></div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="portfolio-item">
+            <img src="img/mesa.png" alt="Mesa de jantar">
+            <div class="portfolio-overlay"><h5 class="mb-0">Mesa de Jantar</h5></div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="portfolio-item">
+            <img src="img/gabinete.png" alt="Banheiro">
+            <div class="portfolio-overlay"><h5 class="mb-0">Gabinete de Banheiro</h5></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE -->
+  <section id="sobre">
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-6">
+          <img class="sobre-img" src="img/foto2.png" alt="Marceneiro trabalhando">
+        </div>
+        <div class="col-lg-6">
+          <h2 class="mb-3" style="color: var(--cor-madeira-escura);">Tradição e qualidade há 20 anos</h2>
+          <p class="text-muted">
+            Somos uma marcenaria familiar especializada em móveis planejados sob medida.
+            Cada peça é pensada com cuidado, unindo técnica artesanal e design moderno.
+          </p>
+          <ul class="list-unstyled">
+            <li class="mb-2"><i class="bi bi-check-circle-fill" style="color: var(--cor-madeira);"></i> Madeira de reflorestamento</li>
+            <li class="mb-2"><i class="bi bi-check-circle-fill" style="color: var(--cor-madeira);"></i> Acabamento premium</li>
+            <li class="mb-2"><i class="bi bi-check-circle-fill" style="color: var(--cor-madeira);"></i> Projeto 3D gratuito</li>
+            <li class="mb-2"><i class="bi bi-check-circle-fill" style="color: var(--cor-madeira);"></i> Garantia de 5 anos</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTATO -->
+  <section id="contato" class="bg-white">
+    <div class="container">
+      <div class="section-title">
+        <h2>Fale Conosco</h2>
+        <div class="linha"></div>
+      </div>
+
+      <div class="row justify-content-center">
+        <div class="col-lg-8 text-center">
+          <p class="text-muted mb-4" style="font-size: 1.1rem;">
+            Prefere agilidade? Fale diretamente com a gente pelo WhatsApp.
+            Envie fotos, medidas ou apenas uma ideia — respondemos rapidinho!
+          </p>
+
+          <a
+            href="https://wa.me/5521990926229?text=Ol%C3%A1!%20Gostaria%20de%20um%20or%C3%A7amento%20de%20m%C3%B3veis%20planejados."
+            target="_blank"
+            rel="noopener"
+            class="btn btn-whatsapp btn-lg mb-5"
+          >
+            <i class="bi bi-whatsapp"></i> Conversar no WhatsApp
+          </a>
+
+          <div class="row g-4 mt-2">
+            <div class="col-md-4">
+              <div class="contato-card">
+                <i class="bi bi-telephone-fill"></i>
+                <h5>Telefone</h5>
+                <p class="mb-0">(21) 99092-6229</p>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="contato-card">
+                <i class="bi bi-envelope-fill"></i>
+                <h5>E-mail</h5>
+                <p class="mb-0"></p>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="contato-card">
+                <i class="bi bi-clock-fill"></i>
+                <h5>Horário</h5>
+                <p class="mb-0">Seg. a Sex. — 8h às 18h</p>
+              </div>
+            </div>
+          </div>
+
+          <p class="text-muted mt-5 mb-0">
+            <i class="bi bi-geo-alt-fill" style="color: var(--cor-madeira);"></i>
+            Lins de Vasconcelos — Rio de Janeiro/RJ
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="text-center">
+    <div class="container">
+      <h5 class="titulo mb-3" style="color:#fff;">João Marcenaria</h5>
+
+      <div class="mb-3">
+        <a href="https://instagram.com/joaodarochavalentim" target="_blank" rel="noopener" title="Instagram">
+          <i class="bi bi-instagram"></i>
+        </a>
+        <a href="https://facebook.com/joaomarceneiro" target="_blank" rel="noopener" title="Facebook">
+          <i class="bi bi-facebook"></i>
+        </a>
+        <a
+          href="https://wa.me/5521990926229?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es."
+          target="_blank"
+          rel="noopener"
+          title="WhatsApp"
+        >
+          <i class="bi bi-whatsapp"></i>
+        </a>
+      </div>
+
+      <p class="mb-0 small">© 2026 João Marcenaria — Todos os direitos reservados.</p>
+      <p class="credito">Desenvolvido por <a href="#" target="_blank">Alexandre</a></p>
+    </div>
+  </footer>
+
+  <!-- Botão flutuante WhatsApp -->
+  <a
+    href="https://wa.me/5521990926229?text=Ol%C3%A1!%20Gostaria%20de%20um%20or%C3%A7amento."
+    class="whatsapp-float"
+    target="_blank"
+    rel="noopener"
+    title="Fale conosco no WhatsApp"
+  >
+    <i class="bi bi-whatsapp"></i>
+  </a>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
